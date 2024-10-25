@@ -18,3 +18,12 @@ export interface ImageRes {
   losttime: string;
   lostdate: string;
 }
+export interface SearchRes {
+  lostid: number;
+  image: string;
+  title: string;
+  category: string;
+  getwhere: string;
+  lostdate: string;
+  losttime: string;
+}

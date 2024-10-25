@@ -1,11 +1,26 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { SearchRes } from "types/types";
 
-export default function ButtonGroup() {
+interface ButtonGroupProps {
+  searches: SearchRes[];
+}
+
+export default function ButtonGroup(props: ButtonGroupProps) {
+  const { searches } = props;
   const navigate = useNavigate();
+
+  function moveToAll() {
+    navigate("/results/all", {
+      state: {
+        searches: searches,
+      },
+    });
+  }
+
   return (
     <Container>
-      <Btn type="button" onClick={() => navigate("/results/all")}>
+      <Btn type="button" onClick={moveToAll}>
         전체 검색 결과보러가기
       </Btn>
       <InstructionText>내 물건이 없다면 키워드 알림 설정을 추천드려요</InstructionText>
