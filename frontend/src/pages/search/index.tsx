@@ -6,8 +6,11 @@ import InputFields from "./components/InputFields";
 import Guide from "./components/Guide";
 import Header from "./components/Header";
 import { usePostSearch } from "@hooks/usePostSearch";
+import { SearchRes } from "types/types";
+import { useNavigate } from "react-router-dom";
 
 export default function index() {
+  const navigate = useNavigate();
   const [ifGuideClicked, setIfGuideClicked] = useState(false);
 
   const [description, setDescription] = useState("");
@@ -55,13 +58,28 @@ export default function index() {
   }
 
   function handleSearch() {
-    postSearchMutate({
-      lostdate: date,
-      losttime1: startHour,
-      losttime2: endHour,
-      getwhere: location,
-      description: description,
-    });
+    postSearchMutate(
+      {
+        lostdate: date,
+        losttime1: startHour,
+        losttime2: endHour,
+        getwhere: location,
+        description: description,
+      },
+      {
+        onSuccess: (res: SearchRes[]) => {
+          // console.log(res);
+          navigate("/results/top", {
+            state: {
+              searches: res,
+            },
+          });
+        },
+        onError: () => {
+          navigate("/results/notfound");
+        },
+      },
+    );
   }
 
   return (

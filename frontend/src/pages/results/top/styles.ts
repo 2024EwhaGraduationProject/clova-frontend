@@ -25,23 +25,18 @@ export const Text = styled.div`
 
 export const Pagination = styled.div<{ $isScrolled: boolean }>`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  position: relative;
   width: 100%;
-  padding: ${({ $isScrolled }) => ($isScrolled ? "8rem 0 1rem" : "14rem 0 1rem")};
+  padding: ${({ $isScrolled }) => ($isScrolled ? "8rem 1rem 1rem" : "14rem 1rem 1rem")};
 `;
 
 export const ArrowButton = styled.button`
   border: none;
   background: none;
-  color: black;
-  font-size: 3rem;
   cursor: pointer;
   transition: color 0.3s ease;
-
-  &:hover {
-    color: #0056b3;
-  }
 
   &:focus {
     outline: none;
@@ -49,11 +44,17 @@ export const ArrowButton = styled.button`
 `;
 
 export const RightArrowIcon = styled(RightArrowIc)`
+  position: absolute;
+  top: 50%;
+  right: 7%;
   width: 2.4rem;
   height: 2.4rem;
 `;
 
 export const LeftArrowIcon = styled(LeftArrowIc)`
+  position: absolute;
+  top: 50%;
+  left: 7%;
   width: 2.4rem;
   height: 2.4rem;
 `;
@@ -98,5 +99,5 @@ export const Details = styled.div`
   display: flex;
   gap: 1.5rem;
   align-items: center;
-  padding: 2rem 0;
+  padding: 1.2rem 0;
 `;
