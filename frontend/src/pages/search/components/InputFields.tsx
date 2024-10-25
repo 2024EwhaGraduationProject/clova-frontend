@@ -35,6 +35,7 @@ export default function InputFields(props: Props) {
     description,
   } = props;
 
+  const isValid = description && date;
   return (
     <Container $isScrolled={isScrolled}>
       <WriteIcon $isScrolled={isScrolled} />
@@ -49,7 +50,9 @@ export default function InputFields(props: Props) {
         onChange={handleInputChange}
       />
       <Field>
-        <Title>분실 시간</Title>
+        <Title>
+          분실 시간 <span>* 필수</span>
+        </Title>
         <TimeContainer>
           <DateInput type="date" name="date" value={date} $hasValue={!!date} onChange={handleInputChange} />
           <TimeInputBox>
@@ -96,7 +99,7 @@ export default function InputFields(props: Props) {
           </LocationContainer>
         )}
       </Field>
-      <SearchBtn type="button" onClick={handleSearch} disabled={!description}>
+      <SearchBtn type="button" onClick={handleSearch} disabled={!isValid}>
         검색하기
       </SearchBtn>
       <FilteredLocModal modalDisplay={modalDisplay} location={location} handleSelectLocation={handleSelectLocation} />
