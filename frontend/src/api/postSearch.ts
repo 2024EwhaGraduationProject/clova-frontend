@@ -18,5 +18,5 @@ export async function postSearch(props: postSearchTypes) {
     description: description,
   });
 
-  return data;
+  return data.data;
 }
