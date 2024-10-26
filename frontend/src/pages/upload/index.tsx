@@ -28,6 +28,7 @@ export default function index() {
       // Reset state before starting the mutation
       setIsUploading(true); // Set uploading state to true
       setImgDesc(null); // Reset imgDesc when a new image is uploaded
+      setUploadError(""); // error 뜨고 나서 다시 업로드할 때 설명 생성 중 ... 띄우기
 
       postImageMutate(
         {
@@ -41,7 +42,6 @@ export default function index() {
             setUploadError("");
             setIsUploading(false);
           },
-
           onError: () => {
             setUploadError("설명을 생성하지 못했어요.");
             setIsUploading(false);
