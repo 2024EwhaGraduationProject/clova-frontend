@@ -8,11 +8,13 @@ import Header from "./components/Header";
 import { usePostSearch } from "@hooks/usePostSearch";
 import { SearchRes } from "types/types";
 import { useNavigate } from "react-router-dom";
+import LoadingModal from "./components/LoadingModal";
 
 export default function index() {
   const navigate = useNavigate();
   const [ifGuideClicked, setIfGuideClicked] = useState(false);
 
+  const [loading, setLoading] = useState(false);
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [startHour, setStartHour] = useState("");
@@ -58,6 +60,7 @@ export default function index() {
   }
 
   function handleSearch() {
+    setLoading(true);
     postSearchMutate(
       {
         lostdate: date,
@@ -68,7 +71,7 @@ export default function index() {
       },
       {
         onSuccess: (res: SearchRes[]) => {
-          // console.log(res);
+          setLoading(false);
           navigate("/results/top", {
             state: {
               searches: res,
@@ -76,6 +79,7 @@ export default function index() {
           });
         },
         onError: () => {
+          setLoading(false);
           navigate("/results/notfound");
         },
       },
@@ -103,6 +107,7 @@ export default function index() {
       <Guide handleGuidelineClick={handleGuidelineClick} ifGuideClicked={ifGuideClicked} />
       {ifGuideClicked && <NoticeText />}
       <Footer />
+      {loading && <LoadingModal />}
     </S.Container>
   );
 }
