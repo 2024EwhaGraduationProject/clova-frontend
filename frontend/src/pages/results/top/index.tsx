@@ -53,7 +53,7 @@ export default function index() {
                 </T.Details>
                 <T.Details>
                   <T.Label>보관 장소</T.Label>
-                  <T.Date>{item.getwhere}</T.Date>
+                  <T.Date>{item.nowwhere}</T.Date>
                 </T.Details>
               </T.Item>
             ),

@@ -26,4 +26,5 @@ export interface SearchRes {
   getwhere: string;
   lostdate: string;
   losttime: string;
+  nowwhere: string;
 }

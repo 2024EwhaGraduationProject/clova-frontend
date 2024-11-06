@@ -29,7 +29,7 @@ export default function index() {
       />
       <A.FullItems $isScrolled={isScrolled}>
         {searches.map((item: SearchRes) => {
-          const { lostid, image, getwhere, lostdate, category, title } = item;
+          const { lostid, image, getwhere, lostdate, category, title, nowwhere } = item;
           return (
             <A.Item type="button" key={lostid} onClick={() => moveToOne(lostid)}>
               <A.Image src={`http://3.37.100.150${image}`} alt={`Lost Item ${lostid}`} />
@@ -40,7 +40,7 @@ export default function index() {
                   <A.Found>{getwhere}</A.Found>
                   <A.Date>{lostdate}</A.Date>
                 </A.Small>
-                <A.Location>{getwhere}</A.Location>
+                <A.Location>{nowwhere}</A.Location>
               </A.Details>
             </A.Item>
           );
