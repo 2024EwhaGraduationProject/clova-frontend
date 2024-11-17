@@ -188,10 +188,6 @@ const LocationContainer = styled.div`
 const DateInputWrapper = styled.div`
   position: relative;
   width: auto;
-
-  @media (width <= 37.6rem) {
-    width: 100%;
-  }
 `;
 
 const DatePlaceholder = styled.span<{ $hasValue: boolean }>`
