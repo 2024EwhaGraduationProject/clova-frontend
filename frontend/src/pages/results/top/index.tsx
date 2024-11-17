@@ -38,7 +38,7 @@ export default function index() {
           (item: SearchRes, index: number) =>
             index === currentIndex && (
               <T.Item key={item.lostid}>
-                <T.Image src={`http://3.37.100.150${item.image}`} alt={`Lost Item ${item.lostid}`} />
+                <T.Image src={`${import.meta.env.VITE_BASE_URL}${item.image}`} alt={`Lost Item ${item.lostid}`} />
                 <T.Details>
                   <T.Label>습득 물품</T.Label>
                   <T.Location>{item.title}</T.Location>

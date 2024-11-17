@@ -32,7 +32,7 @@ export default function index() {
 
           return (
             <A.Item type="button" key={lostid} onClick={moveToOne}>
-              <A.Image src={`http://3.37.100.150${image}`} alt={`Lost Item ${lostid}`} />
+              <A.Image src={`${import.meta.env.VITE_BASE_URL}${image}`} alt={`Lost Item ${lostid}`} />
               <A.Details>
                 <A.Title>{title}</A.Title>
                 <A.Small>
