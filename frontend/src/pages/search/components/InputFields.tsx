@@ -1,6 +1,7 @@
 import { PencilIc, GreenPencilIc } from "@assets/index";
 import styled from "styled-components";
 import FilteredLocModal from "./FilteredLocModal";
+import calendar from "@assets/calendar.png";
 
 interface Props {
   date: string;
@@ -54,7 +55,11 @@ export default function InputFields(props: Props) {
           분실 시간 <span>* 필수</span>
         </Title>
         <TimeContainer>
-          <DateInput type="date" name="date" value={date} $hasValue={!!date} onChange={handleInputChange} />
+          <DateInputWrapper>
+            <DateInput type="date" name="date" value={date} $hasValue={!!date} onChange={handleInputChange} />
+            <DatePlaceholder $hasValue={!!date}>연도. 월. 일</DatePlaceholder>
+            <CalendarImg src={calendar} alt="캘린더 이미지" />
+          </DateInputWrapper>
           <TimeInputBox>
             <TimeInput
               type="text"
@@ -181,8 +186,33 @@ const LocationContainer = styled.div`
   position: relative;
 `;
 
-const DateInput = styled.input<{ $hasValue: boolean }>`
+const DateInputWrapper = styled.div`
+  position: relative;
   width: auto;
+
+  @media (width <= 37.6rem) {
+    width: 100%;
+  }
+`;
+
+const DatePlaceholder = styled.span<{ $hasValue: boolean }>`
+  position: absolute;
+  top: 50%;
+  left: 1.2rem;
+  font-family: WavvePADO-Regular;
+  color: #adb5bd;
+  font-style: normal;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: left;
+  line-height: 140%; /* 25.2px */
+  opacity: ${({ $hasValue }) => ($hasValue ? 0 : 1)};
+  transition: opacity 0.2s;
+  transform: translateY(-50%);
+  pointer-events: none;
+`;
+
+const DateInput = styled.input<{ $hasValue: boolean }>`
   padding: 1.5rem 1.2rem;
   border: 2px solid #ced4da;
   border-radius: 10px;
@@ -199,10 +229,14 @@ const DateInput = styled.input<{ $hasValue: boolean }>`
     outline: none;
     box-shadow: 0 4px 12px rgb(73 80 87 / 20%);
   }
+`;
 
-  @media (width <= 37.6rem) {
-    width: 100%;
-  }
+const CalendarImg = styled.img`
+  position: absolute;
+  top: 50%;
+  right: 1.2rem;
+  width: 1.2rem;
+  height: 1.2rem;
 `;
 
 const TimeInputBox = styled.div`
