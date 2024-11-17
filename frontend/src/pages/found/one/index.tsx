@@ -21,7 +21,7 @@ export default function index() {
       <BtnWrapper type="button" onClick={() => navigate("/found/all")}>
         <O.BackIcon />
       </BtnWrapper>
-      <O.Image src={`http://3.37.100.150${ONE.data.image}`} alt="LostItem" />
+      <O.Image src={`${import.meta.env.VITE_BASE_URL}${ONE.data.image}`} alt="LostItem" />
       <Item
         category={ONE.data.category}
         lostdate={ONE.data.lostdate}
