@@ -35,7 +35,8 @@ export default function InputFields(props: Props) {
     description,
   } = props;
 
-  const isValid = description && date;
+  const isValid = description;
+
   return (
     <Container $isScrolled={isScrolled}>
       <WriteIcon $isScrolled={isScrolled} />
@@ -50,11 +51,16 @@ export default function InputFields(props: Props) {
         onChange={handleInputChange}
       />
       <Field>
-        <Title>
-          분실 시간 <span>* 필수</span>
-        </Title>
+        <Title>분실 시간</Title>
         <TimeContainer>
-          <DateInput type="date" name="date" value={date} $hasValue={!!date} onChange={handleInputChange} />
+          <DateInput
+            placeholder="연도. 월. 일"
+            type="date"
+            name="date"
+            value={date}
+            $hasValue={!!date}
+            onChange={handleInputChange}
+          />
           <TimeInputBox>
             <TimeInput
               type="text"
@@ -186,6 +192,7 @@ const DateInput = styled.input<{ $hasValue: boolean }>`
   padding: 1.5rem 1.2rem;
   border: 2px solid #ced4da;
   border-radius: 10px;
+  background-color: white;
   font-family: WavvePADO-Regular;
   color: ${({ $hasValue }) => ($hasValue ? "#000" : "#adb5bd")};
   font-style: normal;
@@ -194,6 +201,10 @@ const DateInput = styled.input<{ $hasValue: boolean }>`
   text-align: left;
   line-height: 140%; /* 25.2px */
 
+  &::placeholder {
+    color: #000;
+  }
+
   &:focus {
     border-color: #495057;
     outline: none;
@@ -201,7 +212,9 @@ const DateInput = styled.input<{ $hasValue: boolean }>`
   }
 
   @media (width <= 37.6rem) {
+    align-items: left;
     width: 100%;
+    text-align: left;
   }
 `;
 
