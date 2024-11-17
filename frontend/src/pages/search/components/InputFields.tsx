@@ -238,8 +238,8 @@ const DateInput = styled.input<{ $hasValue: boolean }>`
 
 const CalendarImg = styled.img`
   position: absolute;
-  top: 50%;
-  right: 1.2rem;
+  top: 38%;
+  right: 1.8rem;
   width: 1.2rem;
   height: 1.2rem;
 `;
