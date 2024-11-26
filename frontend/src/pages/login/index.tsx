@@ -12,6 +12,8 @@ export default function index() {
   const [mismatch, setMismatch] = useState(false);
   const { mutate: postLoginMutate } = usePostLogin();
 
+  const ADMIN = "admin";
+
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
   };
@@ -29,6 +31,28 @@ export default function index() {
       {
         username: username,
         password: password,
+      },
+      {
+        onSuccess: (res: LoginRes) => {
+          const { access_token, nickname, username } = res.data;
+          console.log(username);
+          setMismatch(false);
+          setToken(access_token);
+          setId(username);
+          setNickname(nickname);
+        },
+        onError: () => {
+          setMismatch(true);
+        },
+      },
+    );
+  }
+
+  function testPage() {
+    postLoginMutate(
+      {
+        username: ADMIN,
+        password: ADMIN,
       },
       {
         onSuccess: (res: LoginRes) => {
@@ -65,7 +89,9 @@ export default function index() {
         <L.ExtraBtn type="button" onClick={moveToSignup}>
           회원가입
         </L.ExtraBtn>
-        <L.ExtraBtn type="button">비밀번호 찾기</L.ExtraBtn>
+        <L.ExtraBtn type="button" onClick={testPage}>
+          비회원 로그인
+        </L.ExtraBtn>
       </L.ExtraBtns>
     </L.Container>
   );
