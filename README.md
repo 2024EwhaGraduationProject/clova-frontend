@@ -1,26 +1,11 @@
-## 1️⃣ Source code에 대한 설명
-#### 1) api 폴더
+## 1️⃣ 폴더 구조
+| 폴더 구조                 | 설명                                                                                                                                                                                                              |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|  <img width="370" alt="스크린샷 2024-12-14 오후 4 34 54" src="https://github.com/user-attachments/assets/ed532acf-8cba-42a9-8744-8220b3a66905" />           |  api : 서버 통신 <br><br> assets : 이미지, 아이콘 <br><br> core : 더미데이터 <br><br> hooks : 커스텀 훅 <br><br> pages : 화면 페이지 <br> - 기능에 따라 10가지 화면으로 구성 <br><br> styles : 포맷, 공통 스타일 <br><br> types : 데이터 타입 <br><br> utils : 공통 함수 |
 
-   ┣ 📂api
-   ┃ ┣ 📜api.ts
-   ┃ ┣ 📜getAll.ts
-   ┃ ┣ 📜getMyupload.ts
-   ┃ ┣ 📜getNoti.ts
-   ┃ ┣ 📜getNotiOne.ts
-   ┃ ┣ 📜getOne.ts
-   ┃ ┣ 📜getShop.ts
-   ┃ ┣ 📜postEmail.ts
-   ┃ ┣ 📜postImage.ts
-   ┃ ┣ 📜postLogin.ts
-   ┃ ┣ 📜postSearch.ts
-   ┃ ┣ 📜postSignup.ts
-   ┃ ┗ 📜postUpload.ts
+## 2️⃣ 코드 설명
 
-## 2️⃣ How to build
-
-## 3️⃣ How to install
-
-## 4️⃣ How to test
+## 3️⃣ How to build, install, test
 #### 1) 프로젝트를 본인의 저장소로 fork
 <img width="511" alt="스크린샷 2024-12-14 오후 4 19 41" src="https://github.com/user-attachments/assets/6341b0d9-8f28-42c9-aec4-6cb3b3e6c8fc" />
 
@@ -35,7 +20,7 @@ cd 폴더_이름
 #### 4) 의존성 모듈 설치 `yarn`
 #### 5) React 앱 실행 `yarn dev`
 
-## 5️⃣ Opensource
+## 4️⃣ Opensource
 | 역할                 | 종류                                                                                                                                                                                                              |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Library              | ![React](https://img.shields.io/badge/react-61DAFB.svg?style=for-the-badge&logo=react&logoColor=white) ![ReactQuery](https://img.shields.io/badge/reactquery-FF4154?style=for-the-badge&logo=reactquery&logoColor=white)                                                                                                                |
