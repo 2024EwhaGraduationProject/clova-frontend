@@ -137,8 +137,7 @@ export function usePostImage() {
 
 ### 6. **리액트쿼리를 적용한 방법**
 
-<img width="455" alt="스크린샷 2024-12-15 오후 9 32 30" src="https://github.com/user-attachments/assets/9940d9d4-439d-466e-a53d-e729e4692282" />
-
+<img width="393" alt="스크린샷 2024-12-15 오후 9 33 02" src="https://github.com/user-attachments/assets/02b8d9ed-40c5-40ee-bf63-84a534b520f4" />
 
 - api 폴더에 있는 함수는 API 호출을 수행합니다.
 - customAxios를 사용해 API 요청을 보내고, 서버로부터의 응답을 반환합니다.
