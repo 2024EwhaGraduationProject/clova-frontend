@@ -5,11 +5,8 @@
 
 ## 2️⃣ 코드 설명
 #### 1) api 연결
-## 📄 서버 통신
 
-🔻 러비팀은 Next가 아닌 React+typescript로 구현하기로해서 이번 투표 과제는 CSR로 구현했습니다. 
-
-### 1. **axios**
+1. **axios**
   - 왜 fetch가 아닌 axios를 사용했는가?
      사실 자바스크립트에는 fetch api가 존재하지만, 더 많은 기능을 지원하기에 개발자들은 서버 통신에 보다 편리한 axios를 선호한다고..!
 
@@ -24,7 +21,7 @@
 
 <br/>
 
-### 2. **async/await**
+2. **async/await**
   - 왜 promise가 아닌 async, await를 사용했는가?
   ⚠️ Promise & then 의 문제점
       - 가독성이 떨어지고, 디버깅이 불편하다 (길어지는 체이닝)
@@ -40,7 +37,7 @@ async function 함수명( ){
 
 <br/>
 
-### 3. **customAxios**
+3. **customAxios**
   - axios를 사용할 때마다 baseURL을 작성하는 등 반복되는 코드를 작성하지 않기 위해서 커스터마이징한 인스턴스를 모듈화하여 사용
 
 ```js
@@ -57,44 +54,32 @@ export const customAxios = axios.create({
 
 <br />
 
-### 4. **인터셉터**
+4. **인터셉터**
 - 로그인을하면 헤더에 토큰을 넣어주는 작업
 👉 authorization header
-     - 투표는 access 토큰에 따라 사용자를 식별해야하기 때문에 토큰을 확인하는 절차가 필수였습니다. 따라서 요청을 인터셉트해서 access token의 정보를 헤더에 넣어주도록 했습니다.
+     - access 토큰에 따라 사용자를 식별해야하기 때문에 토큰을 확인하는 절차가 필수였습니다. 따라서 요청을 인터셉트해서 access token의 정보를 헤더에 넣어주도록 했습니다.
      - 토큰은 Cookie에 넣어서 관리했고 access token이 있으면 헤더의 Authorization에 Bearer ${token} 형태로 토큰 값을 넣어서 요청합니다.
      - useLayoutEffect 훅을 이용해서 렌더링 전에 훅 실행
 
 ```js
-import { getCookie } from "@api/cookie";
-import { customAxios } from "@api/customAxios";
-import { useLayoutEffect } from "react";
-
-export default function useSetInterceptors() {
+const useSetInterceptors = () => {
   useLayoutEffect(() => {
-    const requestInterceptor = customAxios.interceptors.request.use(
-      (request) => {
-        const accessToken = getCookie("accessToken");
-        if (accessToken) {
-          request.headers.Authorization = accessToken;
-        }
-        return request;
-      },
-      (error) => {
-        console.error("Request error:", error);
-        return Promise.reject(error);
-      },
-    );
+    api.interceptors.request.use((config) => {
+      const accessToken = getToken();
+      if (accessToken) {
+        config.headers["Authorization"] = `Bearer ${accessToken}`;
+      }
+      return config;
+    });
+  });
+};
 
-    return () => {
-      customAxios.interceptors.request.eject(requestInterceptor);
-    };
-  }, []);
-}
+export default useSetInterceptors;
 ```
 
 <br />
 
-### 5. **react-query와 custom-hook**
+5. **react-query와 custom-hook**
 
 🔻 GET - useQuery 사용
 
@@ -104,22 +89,14 @@ export default function useSetInterceptors() {
 > 최종 반환 값은 API의 성공, 실패 여부, 반환값을 포함한 객체이다.
 
 ```js
-import { useQuery } from "react-query";
-import { getTopicsById } from "@api/getTopicsById";
-import { ResponseTypes } from "@api/getTopicsById";
-
-export function useGetTopicsById(topicID: number) {
-  const result = useQuery<ResponseTypes, Error>(
-    ["getTopicsById", topicID],
-    () => getTopicsById(topicID),
-    {
-      onError: (error) => {
-        console.log("해당 Topic이 존재하지 않습니다.", error);
-      },
+export function useGetAll() {
+  const { data, error, refetch } = useQuery("getAll", getAll, {
+    refetchInterval: 3000, // 3초마다 데이터를 refetch
+    onError: () => {
+      console.log("물품 리스트 조회 에러", error);
     },
-  );
-
-  return result;
+  });
+  return { data, error, refetch };
 }
 ```
 
@@ -131,23 +108,17 @@ export function useGetTopicsById(topicID: number) {
 > const { mutate: postVoteMutate } = usePostVote();
 
 ```js
-import { useMutation } from "react-query";
-import { postSignUp } from "@api/postSignUp";
-import { useNavigate } from "react-router-dom";
-
-export function usePostSignUp() {
-  const navigate = useNavigate();
-
-  return useMutation(postSignUp, {
-    onSuccess: () => {
-      console.log("회원가입 성공");
-      navigate("/signin");
+export function usePostImage() {
+  return useMutation(postImage, {
+    onSuccess: (data) => {
+      console.log("이미지 업로드 성공", data);
     },
     onError: (error) => {
-      console.log("회원가입 실패", error);
+      console.log("이미지 업로드 실패", error);
     },
   });
 }
+
 ```
 
 👉 왜 React Query를 사용했는가?
@@ -166,29 +137,47 @@ export function usePostSignUp() {
 | 상태 관리 | React Query를 사용하여 서버 상태를 관리하면, 상태를 직접 관리할 필요 없이 자동으로 업데이트    |
 
 
-### 6. **우리가 리액트쿼리를 적용한 방법**
+### 6. **리액트쿼리를 적용한 방법**
 
 📦api
- ┣ 📜cookie.ts
- ┣ 📜customAxios.ts
- ┣ 📜getVotingOptionsById.ts
- ┗ 📜postSignIn.ts
+ ┣ 📜api.ts
+ ┣ 📜getAll.ts
+ ┣ 📜getMyupload.ts
+ ┣ 📜getNoti.ts
+ ┣ 📜getNotiOne.ts
+ ┣ 📜getOne.ts
+ ┣ 📜getShop.ts
+ ┣ 📜postEmail.ts
+ ┣ 📜postImage.ts
+ ┣ 📜postLogin.ts
+ ┣ 📜postSearch.ts
+ ┣ 📜postSignup.ts
+ ┗ 📜postUpload.ts
 
 - api 폴더에 있는 함수는 API 호출을 수행합니다.
 - customAxios를 사용해 API 요청을 보내고, 서버로부터의 응답을 반환합니다.
 
 📦hooks
- ┣ 📜useGetVotingOptionsById.ts
- ┗ 📜usePostSignIn.ts
+ ┣ 📜useGetAll.ts
+ ┣ 📜useGetMyupload.ts
+ ┣ 📜useGetNoti.ts
+ ┣ 📜useGetNotiOne.ts
+ ┣ 📜useGetOne.ts
+ ┣ 📜useGetShop.ts
+ ┣ 📜usePostEmail.ts
+ ┣ 📜usePostImage.ts
+ ┣ 📜usePostLogin.ts
+ ┣ 📜usePostSearch.ts
+ ┣ 📜usePostSignup.ts
+ ┣ 📜usePostUpload.ts
+ ┣ 📜useSetInterceptors.ts
+ ┗ 📜useSetScreenSize.ts
 
 - hooks 폴더에 있는 함수는 요청을 처리하는 역할 
 - 예를 들어, 로그인에 성공하면 쿠키에 토큰을 저장하고, 실패 시 에러 메시지를 표시하는 등 커스텀 할 수 있습니다. 
 - 컴포넌트에서 hooks들을 호출하여 다양하게 사용할 수 있습니다 
 
 ---
-## 🎀 참고
-[🔗 리액트쿼리 공식문서.](https://github.com/ssi02014/react-query-tutorial)
-
 ## 📄 브랜치 전략
 
 [**Issue** 먼저 생성하고 **해당 이슈 번호** 브랜치 생성]
@@ -200,14 +189,12 @@ export function usePostSignUp() {
   - `test` : 개인 연습 브랜치
  
 ▶️ **브랜치 전략**
-  - `feature/#이슈번호/페이지/기능설명`
+  - `이슈번호/페이지/기능설명`
 
   ```
-  develop
-  ㄴ feature/#이슈번호/home/headerUI
+  signup
+  ㄴ 46/signup/resize-padding
   ```
-
-- ↩️ PR은 1명 이상이 확인하면 merge
 
 <br />
 
