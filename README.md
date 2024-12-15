@@ -149,9 +149,7 @@ export function usePostImage() {
 - 예를 들어, 로그인에 성공하면 쿠키에 토큰을 저장하고, 실패 시 에러 메시지를 표시하는 등 커스텀 할 수 있습니다. 
 - 컴포넌트에서 hooks들을 호출하여 다양하게 사용할 수 있습니다 
 
-<br />
-
-## 3️⃣ How to build, install, test
+## 3️⃣ How to install, test
 #### 1) 프로젝트를 본인의 저장소로 fork
 <img width="511" alt="스크린샷 2024-12-14 오후 4 19 41" src="https://github.com/user-attachments/assets/6341b0d9-8f28-42c9-aec4-6cb3b3e6c8fc" />
 
