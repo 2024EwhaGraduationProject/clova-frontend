@@ -158,13 +158,12 @@ export function usePostImage() {
   - `main`: 최종 Merge를 하는 곳 (배포 브랜치)
   - `develop` : 개발할때 Merge하는 곳
   - `페이지명` : 기능을 개발하면서 각자 페이지별로 사용할 브랜치
-  - `test` : 개인 연습 브랜치
  
 ▶️ **브랜치 전략**
-  - `이슈번호/페이지/기능설명`
+  - `이슈번호/페이지/기능설명`
 
   ```
-  signup
+  signup
   ㄴ 46/signup/resize-padding
   ```
 
