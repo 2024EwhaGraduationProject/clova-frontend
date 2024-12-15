@@ -178,7 +178,7 @@ cd 폴더_이름
 | Version Control      | ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)  |
 | Deploy               | ![Deploy](https://img.shields.io/badge/vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
-
+--
 ## 📄 브랜치 전략
 
 [**Issue** 먼저 생성하고 **해당 이슈 번호** 브랜치 생성]
