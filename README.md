@@ -77,8 +77,6 @@ const useSetInterceptors = () => {
 export default useSetInterceptors;
 ```
 
-<br />
-
 5. **react-query와 custom-hook**
 
 🔻 GET - useQuery 사용
@@ -139,39 +137,14 @@ export function usePostImage() {
 
 ### 6. **리액트쿼리를 적용한 방법**
 
-📦api
- ┣ 📜api.ts
- ┣ 📜getAll.ts
- ┣ 📜getMyupload.ts
- ┣ 📜getNoti.ts
- ┣ 📜getNotiOne.ts
- ┣ 📜getOne.ts
- ┣ 📜getShop.ts
- ┣ 📜postEmail.ts
- ┣ 📜postImage.ts
- ┣ 📜postLogin.ts
- ┣ 📜postSearch.ts
- ┣ 📜postSignup.ts
- ┗ 📜postUpload.ts
+<img width="455" alt="스크린샷 2024-12-15 오후 9 32 30" src="https://github.com/user-attachments/assets/9940d9d4-439d-466e-a53d-e729e4692282" />
+
 
 - api 폴더에 있는 함수는 API 호출을 수행합니다.
 - customAxios를 사용해 API 요청을 보내고, 서버로부터의 응답을 반환합니다.
 
-📦hooks
- ┣ 📜useGetAll.ts
- ┣ 📜useGetMyupload.ts
- ┣ 📜useGetNoti.ts
- ┣ 📜useGetNotiOne.ts
- ┣ 📜useGetOne.ts
- ┣ 📜useGetShop.ts
- ┣ 📜usePostEmail.ts
- ┣ 📜usePostImage.ts
- ┣ 📜usePostLogin.ts
- ┣ 📜usePostSearch.ts
- ┣ 📜usePostSignup.ts
- ┣ 📜usePostUpload.ts
- ┣ 📜useSetInterceptors.ts
- ┗ 📜useSetScreenSize.ts
+<img width="349" alt="스크린샷 2024-12-15 오후 9 32 04" src="https://github.com/user-attachments/assets/65a73ca8-7c98-48a3-8123-bbd3eba5c4ae" />
+
 
 - hooks 폴더에 있는 함수는 요청을 처리하는 역할 
 - 예를 들어, 로그인에 성공하면 쿠키에 토큰을 저장하고, 실패 시 에러 메시지를 표시하는 등 커스텀 할 수 있습니다. 
