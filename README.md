@@ -149,24 +149,6 @@ export function usePostImage() {
 - 예를 들어, 로그인에 성공하면 쿠키에 토큰을 저장하고, 실패 시 에러 메시지를 표시하는 등 커스텀 할 수 있습니다. 
 - 컴포넌트에서 hooks들을 호출하여 다양하게 사용할 수 있습니다 
 
----
-## 📄 브랜치 전략
-
-[**Issue** 먼저 생성하고 **해당 이슈 번호** 브랜치 생성]
-
-▶️ **브랜치명**
-  - `main`: 최종 Merge를 하는 곳 (배포 브랜치)
-  - `develop` : 개발할때 Merge하는 곳
-  - `페이지명` : 기능을 개발하면서 각자 페이지별로 사용할 브랜치
- 
-▶️ **브랜치 전략**
-  - `이슈번호/페이지/기능설명`
-
-  ```
-  signup
-  ㄴ 46/signup/resize-padding
-  ```
-
 <br />
 
 ## 3️⃣ How to build, install, test
@@ -195,3 +177,21 @@ cd 폴더_이름
 | Package Manager      | ![Yarn](https://img.shields.io/badge/yarn-2C8EBB?style=for-the-badge&logo=yarn&logoColor=white)                                                                                                                   |
 | Version Control      | ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)  |
 | Deploy               | ![Deploy](https://img.shields.io/badge/vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+
+
+## 📄 브랜치 전략
+
+[**Issue** 먼저 생성하고 **해당 이슈 번호** 브랜치 생성]
+
+▶️ **브랜치명**
+  - `main`: 최종 Merge를 하는 곳 (배포 브랜치)
+  - `develop` : 개발할때 Merge하는 곳
+  - `페이지명` : 기능을 개발하면서 각자 페이지별로 사용할 브랜치
+ 
+▶️ **브랜치 전략**
+  - `이슈번호/페이지/기능설명`
+
+  ```
+  signup
+  ㄴ 46/signup/resize-padding
+  ```
