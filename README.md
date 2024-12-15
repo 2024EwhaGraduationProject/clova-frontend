@@ -135,7 +135,7 @@ export function usePostImage() {
 | 상태 관리 | React Query를 사용하여 서버 상태를 관리하면, 상태를 직접 관리할 필요 없이 자동으로 업데이트    |
 
 
-### 6. **리액트쿼리를 적용한 방법**
+6. **리액트쿼리를 적용한 방법**
 
 <img width="393" alt="스크린샷 2024-12-15 오후 9 33 02" src="https://github.com/user-attachments/assets/02b8d9ed-40c5-40ee-bf63-84a534b520f4" />
 
